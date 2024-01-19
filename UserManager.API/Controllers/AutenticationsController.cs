@@ -34,6 +34,7 @@ namespace UserManager.API.Controllers
                 var KeyBytes = Encoding.ASCII.GetBytes(secretKey);
                 var claims = new ClaimsIdentity();
                 claims.AddClaim(new Claim(ClaimTypes.NameIdentifier, userInfoDTO.Email));
+                claims.AddClaim(new Claim("Rol", (user.Result) != null ?  user?.Result?.CodeRole : string.Empty));
 
                 var tokeDescriptor = new SecurityTokenDescriptor
                 {
